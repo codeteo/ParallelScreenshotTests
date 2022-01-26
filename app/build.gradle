@@ -9,12 +9,13 @@ android {
 
     defaultConfig {
         applicationId "com.parallel.shots"
-        minSdk 21
+        minSdk 26
         targetSdk 31
         versionCode 1
         versionName "1.0"
 
         testInstrumentationRunner "com.karumi.shot.ShotTestRunner"
+        testApplicationId "com.parallel.shots.test"
     }
 
     buildTypes {
@@ -33,6 +34,9 @@ android {
     buildFeatures {
         viewBinding true
     }
+    packagingOptions {
+        exclude 'META-INF/**'
+    }
 }
 
 dependencies {
@@ -47,6 +51,7 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
-    androidTestImplementation "com.facebook.testing.screenshot:core:0.13.0"
+    debugImplementation "androidx.fragment:fragment-testing:1.4.0"
+//    androidTestImplementation "com.facebook.testing.screenshot:core:0.13.0"
     androidTestImplementation "com.karumi:shot:5.12.1"
 }
