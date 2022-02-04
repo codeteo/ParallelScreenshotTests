@@ -55,3 +55,20 @@ dependencies {
 //    androidTestImplementation "com.facebook.testing.screenshot:core:0.13.0"
     androidTestImplementation "com.karumi:shot:5.12.1"
 }
+
+task recordScreenshots(type: Exec) {
+    group 'shot'
+    workingDir rootDir
+    commandLine 'bash', "./gradlew", "executeScreenshotTests",
+            '-PuseOrchestractor=false', '-Precord', '--stacktrace'
+    doFirst {
+        delete "$projectDir/screenshots/debug"
+    }
+}
+
+task verifyScreenshots(type: Exec) {
+    group 'shot'
+    workingDir rootDir
+    commandLine 'bash', "./gradlew", "executeScreenshotTests",
+            '-PuseOrchestractor=false', '--stacktrace'
+}
